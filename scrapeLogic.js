@@ -74,7 +74,23 @@ const scrapeLogic = async(res) => {
         if (hasData) {
             const tableData = await extractTableData(page);
             stockData = transformData(tableData);
-            console.log(`Extracted data: `, stockData[0]); // Logging first item for verification
+            // Send the scraped data directly to the Wix endpoint
+            try {
+                const url = 'https://trendyadventurer.wixstudio.io/tb-redo/_functions/recieveStockData';
+                const response = await axios.post(url, stockData, {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+    
+                console.log('Data array sent successfully. Server response:', response.data);
+            } catch (error) {
+                if (error.response) {
+                    console.error('Server responded with an error:', error.response.status, error.response.data);
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error setting up the request:', error.message);
+                }
+            }
         } else {
             console.log("Data not found after " + maxRetries + " retries.");
         }
