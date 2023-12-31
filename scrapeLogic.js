@@ -22,26 +22,24 @@ const scrapeLogic = async(res) => {
         // Navigate to the specified page and log in
         await page.goto('https://b.gfn.cainiao.com/dist/orderFrame#/abnor/outbound', { waitUntil: 'networkidle0' });
         console.log(`browser launched`);
-            const html = await page.content();
-            console.log(`page html: `,html);
-        await page.waitForSelector('#username', { timeout: 5000 });
+        await page.waitForSelector('#username');
         await page.type('#username', '17609048951');
-        await page.waitForSelector('#passwordOrg', { timeout: 5000 });
+        await page.waitForSelector('#passwordOrg');
         await page.type('#passwordOrg', 'linghang123456');
         await page.click('#signbtn');
         await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
         // Click the specified button
         const buttonSelector = '#ice-container div[class^="ProcessGuidance--ProcessWrap--"] div[class^="ProcessGuidance--buttonStyle--"] button';
-        await page.waitForSelector(buttonSelector, { timeout: 5000 });
+        await page.waitForSelector(buttonSelector);
         await page.click(buttonSelector);
         await new Promise(r => setTimeout(r, 3000));
 
         // Expand menu options, click the first list item and wait
         await page.click('.index-slider .slider-wrapper');
-        await new Promise(r => setTimeout(r, 3000));
+        await new Promise(r => setTimeout(r, 1000));
         await page.click('.ant-menu.ant-menu-inline.ant-menu-sub li:first-child');
-        await new Promise(r => setTimeout(r, 3000));
+        await new Promise(r => setTimeout(r, 1000));
 
         // Change dropdown selection
         await page.click('.next-pagination-size-selector .next-select.next-select-trigger');
@@ -54,7 +52,7 @@ const scrapeLogic = async(res) => {
                     }
                 });
         });
-        await new Promise(r => setTimeout(r, 3000));
+        await new Promise(r => setTimeout(r, 1000));
 
         // Check if the table has data with a retry limit
         const maxRetries = 5;
@@ -68,7 +66,7 @@ const scrapeLogic = async(res) => {
             if (!hasData) {
                 console.log(`Retry ${retryCount + 1}: Table data not found, reloading...`);
                 await page.reload({ waitUntil: 'networkidle0' });
-                await new Promise(r => setTimeout(r, 3000));
+                await new Promise(r => setTimeout(r, 1000));
                 retryCount++;
             }
         }
