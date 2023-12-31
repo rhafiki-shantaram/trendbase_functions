@@ -22,6 +22,8 @@ const scrapeLogic = async(res) => {
         // Navigate to the specified page and log in
         await page.goto('https://b.gfn.cainiao.com/dist/orderFrame#/abnor/outbound', { waitUntil: 'networkidle0' });
         console.log(`browser launched`);
+            const html = await page.content();
+            console.log(`page html: `,html);
         await page.waitForSelector('#username', { timeout: 5000 });
         await page.type('#username', '17609048951');
         await page.waitForSelector('#passwordOrg', { timeout: 5000 });
