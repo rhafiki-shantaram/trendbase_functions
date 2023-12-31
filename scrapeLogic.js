@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const axios = require('axios');
 require("dotenv").config();
 
 const scrapeLogic = async(res) => {
