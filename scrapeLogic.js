@@ -3,12 +3,14 @@ require("dotenv").config();
 
 const scrapeLogic = async(res) => {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: "new",
+        ignoreDefaultArgs: ['--disable-extensions'],
         args: [
             "--disable-setuid-sandbox",
             "--no-sandbox",
             "--single-process",
             "--no-zygote",
+            "--enable-gpu"
         ],
         executablePath: process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath()
     });
