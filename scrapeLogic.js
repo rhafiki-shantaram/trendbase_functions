@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const fs = require('fs').promises;
+require("dotenv").config();
 
 const scrapeLogic = async(res) => {
     const browser = await puppeteer.launch({
