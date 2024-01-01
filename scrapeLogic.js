@@ -53,7 +53,7 @@ const scrapeLogic = async(res) => {
                     }
                 });
         });
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 3000));
 
         // Check if the table has data with a retry limit
         const maxRetries = 5;
