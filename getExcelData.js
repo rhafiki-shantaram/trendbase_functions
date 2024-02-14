@@ -9,7 +9,7 @@ async function getExcelContent(url, sheetName) {
             method: 'GET',
             responseType: 'arraybuffer', // Important for handling binary data like Excel files
             // Timeout can be adjusted or removed based on your requirements
-            timeout: 30000, // Timeout after 30 seconds
+            timeout: 15000, // Timeout after 30 seconds
         });
 
         const workbook = new ExcelJS.Workbook();
