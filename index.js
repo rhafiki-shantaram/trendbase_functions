@@ -14,7 +14,7 @@ app.get("/scrape", (req,res) => {
     scrapeLogic(res);
 })
 
-app.get("/getExcelData", (req, res) => {
+app.get("/get-excel-data", (req, res) => {
     getExcelData(req, res); // Corrected to pass both req and res
 });
 
